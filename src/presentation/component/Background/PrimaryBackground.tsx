@@ -44,8 +44,8 @@ export default PrimaryBackground;
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
-    flex: 1,
+    width: Dimensions.get('screen').width,
+    height: Dimensions.get('screen').height,
     backgroundColor: Colors.DARK_BLUE_PRIMARY,
   },
 

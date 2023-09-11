@@ -13,13 +13,15 @@ import PrimaryBackground from './src/presentation/component/Background/PrimaryBa
 import SignUp from './src/presentation/container/authentication/SignUp/SignUp';
 import RedButton from './src/presentation/component/Button/RedButton';
 import DisableButton from './src/presentation/component/Button/DisableButton';
+import OTP from './src/presentation/container/authentication/OTP/OTP';
 
 function App(): JSX.Element {
   return (
       // <PrimaryBackground/>
-      <SignUp/>
+      // <SignUp/>
       // <RedButton/>
       // <DisableButton/>
+      <OTP/>
   );
 }
 
