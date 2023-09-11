@@ -8,9 +8,34 @@ import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import RedButton from '../../../component/Button/RedButton';
 import WhiteButton from '../../../component/Button/WhiteButton';
 import {Fonts} from '../../../resource';
+import {SignUpProp} from './type';
 
-const SignUp = () => {
-  const [isChecked, setIsChecked] = useState(false);
+const SignUp: React.FC<SignUpProp> = props => {
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [userName, setUserName] = useState('');
+  const [isAgree, setIsAgree] = useState(false);
+  const [isAnable, setIsAnable] = useState(false);
+  const {navigation} = props;
+
+  const onMoveToLoginScreen = () => {
+    navigation.navigate('SignIn');
+  };
+
+  const onMoveToOTPScreen = () => {
+    navigation.navigate('OTP');
+  }
+
+  useEffect(() => {
+    if (phoneNumber == '') {
+      setIsAnable(false);
+    } else if (userName == '') {
+      setIsAnable(false);
+    } else if (isAgree == false) {
+      setIsAnable(false);
+    } else {
+      setIsAnable(true);
+    }
+  }, [phoneNumber, userName, isAgree]);
 
   return (
     <PrimaryBackground>
@@ -23,17 +48,31 @@ const SignUp = () => {
         {/* body */}
         <View style={styles.body}>
           <Text style={styles.body_title}>ĐĂNG KÝ</Text>
-          <TextInputField placeholder="Số điện thoại" />
-          <TextInputField placeholder="Tên người dùng" />
+          <TextInputField
+            inputProp={{
+              onChangeText(value) {
+                setPhoneNumber(value);
+              },
+            }}
+            placeholder="Số điện thoại"
+          />
+          <TextInputField
+            inputProp={{
+              onChangeText(value) {
+                setUserName(value);
+              },
+            }}
+            placeholder="Tên người dùng"
+          />
           <View style={styles.body_rules}>
             <BouncyCheckbox
               size={20}
               fillColor={Colors.WHITE}
-              iconStyle={{borderRadius: 7, }}
+              iconStyle={{borderRadius: 7}}
               innerIconStyle={{borderRadius: 7}}
-              onPress={() => setIsChecked(!isChecked)}
+              onPress={() => setIsAgree(!isAgree)}
               checkIconImageSource={require('../../../resource/assets/Checkbox.png')}
-              iconImageStyle={{width: 15, height: 15, resizeMode: 'contain' }}
+              iconImageStyle={{width: 15, height: 15, resizeMode: 'contain'}}
             />
             <Text style={styles.body_rulesCap}>
               Tôi đã đọc và đồng ý với{' '}
@@ -44,9 +83,9 @@ const SignUp = () => {
         </View>
         {/* footer */}
         <View style={styles.footer}>
-          <RedButton label="Lấy mã OTP" isAnable={false} />
+          <RedButton label="Lấy mã OTP" isAnable={isAnable} onPress={onMoveToOTPScreen}/>
           <Text style={styles.footer_cap}>Hoặc</Text>
-          <WhiteButton label="Đăng nhập" />
+          <WhiteButton label="Đăng nhập" onPress={onMoveToLoginScreen} />
         </View>
       </View>
     </PrimaryBackground>

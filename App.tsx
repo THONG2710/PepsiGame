@@ -14,6 +14,8 @@ import SignUp from './src/presentation/container/authentication/SignUp/SignUp';
 import RedButton from './src/presentation/component/Button/RedButton';
 import DisableButton from './src/presentation/component/Button/DisableButton';
 import OTP from './src/presentation/container/authentication/OTP/OTP';
+import SignIn from './src/presentation/container/authentication/SignIn/SignIn';
+import AuthenticationStack from './src/presentation/navigation/AuthenticationStack';
 
 function App(): JSX.Element {
   return (
@@ -21,7 +23,9 @@ function App(): JSX.Element {
       // <SignUp/>
       // <RedButton/>
       // <DisableButton/>
-      <OTP/>
+      // <OTP/>
+      // <SignIn/>
+      <AuthenticationStack/>
   );
 }
 

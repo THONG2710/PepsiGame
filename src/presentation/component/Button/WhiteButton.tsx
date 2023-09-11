@@ -19,12 +19,13 @@ import {
 
 interface WhiteButtonProps {
     label?: string;
+    onPress?: () => void;
 }
 
 const WhiteButton:React.FC<WhiteButtonProps> = (props) => {
-    const { label } = props;
+    const { label, onPress } = props;
   return (
-    <Pressable style={[styles.container]}>
+    <Pressable style={[styles.container]} onPress={onPress}>
       <ImageBackground
         style={styles.imageBackGround}
         source={{uri: getImageUrl(GOLDEN_IMG)}}>
