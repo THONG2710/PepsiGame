@@ -22,6 +22,7 @@ import { useState } from 'react';
   export const CURTAIN_BOTTOM_LEFT_SMALL_LIGHT_IMG = 'curtain_bottom_left_small_light.png';
   export const CURTAIN_BOTTOM_RIGHT_SMALL__LIGHT_IMG = 'curtain_bottom_right_small_light.png';
   export const PEPSI_IMG = 'pepsi.png';
+  export const ICON_BACK = 'icon_back.png';
 
   export const getImageUrl = (path: string) => {
     try {

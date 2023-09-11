@@ -16,6 +16,8 @@ import DisableButton from './src/presentation/component/Button/DisableButton';
 import OTP from './src/presentation/container/authentication/OTP/OTP';
 import SignIn from './src/presentation/container/authentication/SignIn/SignIn';
 import AuthenticationStack from './src/presentation/navigation/AuthenticationStack';
+import RulesBackground from './src/presentation/component/Background/RulesBackground';
+import ProgramRules from './src/presentation/container/authentication/ProgramRules/ProgramRules';
 
 function App(): JSX.Element {
   return (
@@ -26,6 +28,8 @@ function App(): JSX.Element {
       // <OTP/>
       // <SignIn/>
       <AuthenticationStack/>
+      // <RulesBackground/>
+      // <ProgramRules/>
   );
 }
 

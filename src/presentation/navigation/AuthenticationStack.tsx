@@ -6,6 +6,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import SignIn from '../container/authentication/SignIn/SignIn';
 import SignUp from '../container/authentication/SignUp/SignUp';
 import OTP from '../container/authentication/OTP/OTP';
+import ProgramRules from '../container/authentication/ProgramRules/ProgramRules';
 
 const Stack = createNativeStackNavigator<AuthenticationStoryBoardParamlist>();
 
@@ -20,6 +21,7 @@ const AuthenticationStack = () => {
         <Stack.Screen name="SignIn" component={SignIn} />
         <Stack.Screen name="SignUp" component={SignUp} />
         <Stack.Screen name="OTP" component={OTP} />
+        <Stack.Screen name='ProgramRules' component={ProgramRules}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -1,4 +1,12 @@
-import {Alert, Image, StyleSheet, Text, View, Dimensions} from 'react-native';
+import {
+  Alert,
+  Image,
+  StyleSheet,
+  Text,
+  View,
+  Dimensions,
+  Pressable,
+} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import PrimaryBackground from '../../../component/Background/PrimaryBackground';
 import {CHECKBOX_IMG, getImageUrl} from '../../../resource/assets/images';
@@ -23,6 +31,10 @@ const SignUp: React.FC<SignUpProp> = props => {
 
   const onMoveToOTPScreen = () => {
     navigation.navigate('OTP');
+  };
+
+  const onMoveToProgramRulesScreen = () => {
+    navigation.navigate('ProgramRules');
   }
 
   useEffect(() => {
@@ -74,16 +86,26 @@ const SignUp: React.FC<SignUpProp> = props => {
               checkIconImageSource={require('../../../resource/assets/Checkbox.png')}
               iconImageStyle={{width: 15, height: 15, resizeMode: 'contain'}}
             />
-            <Text style={styles.body_rulesCap}>
-              Tôi đã đọc và đồng ý với{' '}
-              <Text style={styles.body_capHighlight}>thể lệ chương trình</Text>{' '}
-              Pepsi Tết.
-            </Text>
+            <View style={styles.body_rulesContainer}> 
+              <Text style={styles.body_rulesCap}>
+                Tôi đã đọc và đồng ý với{' '}
+              </Text>
+              <Pressable onPress={onMoveToProgramRulesScreen}>
+                <Text style={styles.body_capHighlight}>
+                  thể lệ chương trình
+                </Text>
+              </Pressable>
+              <Text style={styles.body_rulesCap}> Pepsi Tết.</Text>
+            </View>
           </View>
         </View>
         {/* footer */}
         <View style={styles.footer}>
-          <RedButton label="Lấy mã OTP" isAnable={isAnable} onPress={onMoveToOTPScreen}/>
+          <RedButton
+            label="Lấy mã OTP"
+            isAnable={isAnable}
+            onPress={onMoveToOTPScreen}
+          />
           <Text style={styles.footer_cap}>Hoặc</Text>
           <WhiteButton label="Đăng nhập" onPress={onMoveToLoginScreen} />
         </View>
@@ -151,12 +173,19 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.primaryFonts,
     fontSize: 10.3,
     color: Colors.WHITE,
+    height: 20,
+  },
+
+  body_rulesContainer: {
+    flexDirection: 'row',
     marginLeft: -10,
   },
 
   body_capHighlight: {
     color: Colors.BEIGE_YELLOW,
     fontWeight: 'bold',
+    fontFamily: Fonts.primaryFonts,
+    fontSize: 10.3,
   },
 
   // ================ footer =================
