@@ -65,6 +65,7 @@ const SignUp: React.FC<SignUpProp> = props => {
               onChangeText(value) {
                 setPhoneNumber(value);
               },
+              keyboardType: 'number-pad',
             }}
             placeholder="Số điện thoại"
           />

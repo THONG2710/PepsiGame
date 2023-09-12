@@ -1,14 +1,39 @@
 import {Dimensions, StyleSheet, Text, View, Image} from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Colors, Fonts, PEPSI_IMG, getImageUrl} from '../../../resource';
 import PrimaryBackground from '../../../component/Background/PrimaryBackground';
 import WhiteButton from '../../../component/Button/WhiteButton';
 import RedButton from '../../../component/Button/RedButton';
 import TextInputField from '../../../component/Input/TextInputField';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
+import {SignInProp} from './type';
 
-const SignIn = () => {
-  const [isChecked, setIsChecked] = useState(false);
+const SignIn: React.FC<SignInProp> = props => {
+  const {navigation} = props;
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [isAnable, setIsAnable] = useState(false);
+
+  const onMoveToSignUpScreen = () => {
+    navigation.navigate('SignUp');
+  };
+
+  const onMoveToOTPScreen = () => {
+    navigation.navigate('OTP');
+  };
+
+  const handleChangeTextPhoneNumber = (value: string) => {
+    setPhoneNumber(value);
+  };
+
+  useEffect(() => {
+    if (phoneNumber == '') {
+      setIsAnable(false);
+    } else {
+      setIsAnable(true);
+    }
+  }, [phoneNumber])
+  
+
   return (
     <PrimaryBackground>
       <View style={styles.container}>
@@ -21,16 +46,27 @@ const SignIn = () => {
         <View style={styles.body}>
           <Text style={styles.body_title}>ĐĂNG NHẬP</Text>
           <Text style={styles.body_cap}>Số điện thoại</Text>
-          <TextInputField placeholder="Số điện thoại" />
+          <TextInputField
+            placeholder="Số điện thoại"
+            inputProp={{
+              onChangeText(value) {
+                handleChangeTextPhoneNumber(value);
+              },
+              keyboardType: 'number-pad',
+            }}
+          /> 
           <View style={styles.body_imagContainer}>
-            <Image style={styles.body_img} source={{uri: getImageUrl(PEPSI_IMG)}} />
+            <Image
+              style={styles.body_img}
+              source={{uri: getImageUrl(PEPSI_IMG)}}
+            />
           </View>
         </View>
         {/* footer */}
         <View style={styles.footer}>
-          <RedButton label="Lấy mã OTP" isAnable={false} />
+          <RedButton label="Lấy mã OTP" isAnable={isAnable} onPress={onMoveToOTPScreen}/>
           <Text style={styles.footer_cap}>Hoặc</Text>
-          <WhiteButton label="Đăng ký" />
+          <WhiteButton label="Đăng ký" onPress={onMoveToSignUpScreen} />
         </View>
       </View>
     </PrimaryBackground>
@@ -71,7 +107,7 @@ const styles = StyleSheet.create({
   // ================ body =================
   body: {
     width: '100%',
-    height: Dimensions.get('screen').height / 3 ,
+    height: Dimensions.get('screen').height / 3,
   },
 
   body_title: {

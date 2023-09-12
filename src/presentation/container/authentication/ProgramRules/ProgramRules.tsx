@@ -11,19 +11,25 @@ import React from 'react';
 import RulesBackground from '../../../component/Background/RulesBackground';
 import {
   Colors,
-  DECORATIVE_MESH_LEFT_IMG,
   Fonts,
   ICON_BACK,
   getImageUrl,
 } from '../../../resource';
+import { ProgramRulesProp } from './type';
 
-const ProgramRules = () => {
+const ProgramRules:React.FC<ProgramRulesProp> = (props) => {
+  const {navigation} = props;
+
+  const GoBack = () => {
+    navigation.goBack();
+  }
+
   return (
     <RulesBackground>
       <View style={styles.container}>
         {/* header */}
         <View style={styles.header}>
-          <Pressable>
+          <Pressable style={styles.header_btn} onPress={GoBack}>
             <Image
               style={styles.header_iconBack}
               source={{uri: getImageUrl(ICON_BACK)}}
@@ -118,8 +124,12 @@ const styles = StyleSheet.create({
     width: 32,
     height: 32,
     resizeMode: 'contain',
+  },
+
+  header_btn: {
+    width: 35,
     position: 'absolute',
-    left: -Dimensions.get('screen').width / 2 + 20,
+    left: 30,
   },
 
   header_title: {
