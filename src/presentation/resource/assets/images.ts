@@ -41,6 +41,9 @@ import { useState } from 'react';
   export const HEAD_IMG = 'head.png';
   export const YELLOW_FLOWER2_IMG = 'yellow_flower2.png';
   export const YELLOW_FLOWER3_IMG = 'yellow_flower3.png';
+  export const FIREWORK_IMG = 'fireWork.png';
+  export const BOTTOM_IMG = 'bottom.png';
+  export const ARROW_UP_IMG = 'arrow_up.png';
 
   export const getImageUrl = (path: string) => {
     try {

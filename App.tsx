@@ -21,6 +21,8 @@ import ProgramRules from './src/presentation/container/authentication/ProgramRul
 import HomeScreen from './src/presentation/container/authorized/Home/HomeScreen';
 import HomeBackground from './src/presentation/component/Background/HomeBackground';
 import PlayButton from './src/presentation/component/Button/PlayButton';
+import GameBackground from './src/presentation/component/Background/GameBackground';
+import GameScreen from './src/presentation/container/authorized/Game/GameScreen';
 
 function App(): JSX.Element {
   return (
@@ -33,9 +35,11 @@ function App(): JSX.Element {
       // <AuthenticationStack/>
       // <RulesBackground/>
       // <ProgramRules/>
-      <HomeScreen/>
+      // <HomeScreen/>
       // <HomeBackground/>
       // <PlayButton/>
+      // <GameBackground/>
+      <GameScreen/>
   );
 }
 
