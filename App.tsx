@@ -18,6 +18,9 @@ import SignIn from './src/presentation/container/authentication/SignIn/SignIn';
 import AuthenticationStack from './src/presentation/navigation/AuthenticationStack';
 import RulesBackground from './src/presentation/component/Background/RulesBackground';
 import ProgramRules from './src/presentation/container/authentication/ProgramRules/ProgramRules';
+import HomeScreen from './src/presentation/container/authorized/Home/HomeScreen';
+import HomeBackground from './src/presentation/component/Background/HomeBackground';
+import PlayButton from './src/presentation/component/Button/PlayButton';
 
 function App(): JSX.Element {
   return (
@@ -27,9 +30,12 @@ function App(): JSX.Element {
       // <DisableButton/>
       // <OTP/>
       // <SignIn/>
-      <AuthenticationStack/>
+      // <AuthenticationStack/>
       // <RulesBackground/>
       // <ProgramRules/>
+      <HomeScreen/>
+      // <HomeBackground/>
+      // <PlayButton/>
   );
 }
 

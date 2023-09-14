@@ -23,6 +23,24 @@ import { useState } from 'react';
   export const CURTAIN_BOTTOM_RIGHT_SMALL__LIGHT_IMG = 'curtain_bottom_right_small_light.png';
   export const PEPSI_IMG = 'pepsi.png';
   export const ICON_BACK = 'icon_back.png';
+  export const CURTAIN_LEFT_BIG_IMG = 'curtain_left_big.png';
+  export const CAKE_IMG = 'cake.png';
+  export const BLUE_FLOWER_IMG = 'blue_flower.png';
+  export const CURTAIN_DECORD_IMG = 'curtain_decord.png';  
+  export const GODEN_FLOWER_IMG = 'goden_flower.png'; 
+  export const ICON_LOGOUT_IMG = 'icon_logout.png'; 
+  export const RED_FLOWER_IMG = 'red_flower.png'; 
+  export const NET_RIGHT_IMG = 'net_fight.png'; 
+  export const NET_I_IMG = 'net_i.png'; 
+  export const NET_L_IMG = 'net_l.png';
+  export const DECORDLEFT_IMG = 'decordLeft.png';
+  export const DECORDRIGHT_IMG = 'decord_right.png';
+  export const DRUM_IMG = 'drum.png';
+  export const DECORDBOTTOM_IMG = 'decordBottom.png';
+  export const LIGHT_BLUE_FLOWER_IMG = 'light_blue_flower.png';
+  export const HEAD_IMG = 'head.png';
+  export const YELLOW_FLOWER2_IMG = 'yellow_flower2.png';
+  export const YELLOW_FLOWER3_IMG = 'yellow_flower3.png';
 
   export const getImageUrl = (path: string) => {
     try {

@@ -10,4 +10,6 @@ export const Colors = {
     MORE_GRAY: '#9B9B9B',
     LIGHT_YELLOW: '#EFE8D1',
     BEIGE_YELLOW: '#FFDD00',
+    LIGHT_RED: '#DB262C',
+    DARK_RED: '#C31920',
 }

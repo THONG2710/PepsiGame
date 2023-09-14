@@ -3,9 +3,11 @@ import {
   Image,
   ImageBackground,
   Pressable,
+  StyleProp,
   StyleSheet,
   Text,
   View,
+  ViewStyle,
 } from 'react-native';
 import React from 'react';
 import {Colors} from '../../resource/value/colors';
@@ -18,14 +20,16 @@ import {
 } from '../../resource/assets/images';
 
 interface WhiteButtonProps {
-    label?: string;
-    onPress?: () => void;
+  label?: string;
+  onPress?: () => void;
+  buttonStyle?: StyleProp<ViewStyle>;
+  space?: number;
 }
 
-const WhiteButton:React.FC<WhiteButtonProps> = (props) => {
-    const { label, onPress } = props;
+const WhiteButton: React.FC<WhiteButtonProps> = props => {
+  const {label, onPress, buttonStyle, space} = props;
   return (
-    <Pressable style={[styles.container]} onPress={onPress}>
+    <Pressable style={[styles.container, buttonStyle]} onPress={onPress}>
       <ImageBackground
         style={styles.imageBackGround}
         source={{uri: getImageUrl(GOLDEN_IMG)}}>
@@ -55,7 +59,7 @@ export default WhiteButton;
 const styles = StyleSheet.create({
   container: {
     width: Dimensions.get('screen').width / 2,
-    height: 44,
+    height: 45,
     borderRadius: 10,
     overflow: 'hidden',
   },
@@ -74,22 +78,23 @@ const styles = StyleSheet.create({
     height: '90%',
     borderRadius: 10,
     backgroundColor: Colors.WHITE,
+    overflow: 'hidden',
   },
 
   curtain_left: {
-    width: '50%',
+    width: '24%',
     height: '100%',
-    resizeMode: 'contain',
     position: 'absolute',
-    left: -20,
+    left: 0,
+    bottom: 0,
   },
 
   curtain_right: {
-    width: '50%',
+    width: '24%',
     height: '100%',
-    resizeMode: 'contain',
     position: 'absolute',
-    right: -20,
+    right: 0,
+    bottom: 0,
   },
 
   txtButton: {
