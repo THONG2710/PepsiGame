@@ -7,8 +7,14 @@ import PrimaryBackground from '../../../component/Background/PrimaryBackground';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import TextInputField from '../../../component/Input/TextInputField';
 import OTPTextView from 'react-native-otp-textinput';
+import { OTPProp } from './type';
 
-const OTP = () => {
+const OTP:React.FC<OTPProp> = (props) => {
+  const {navigation} = props;
+  const onMoveToHomeScreen = () => {
+    navigation.navigate('AuthorizedNavigation');
+  }
+
   return (
     <PrimaryBackground>
       <View style={styles.container}>
@@ -33,7 +39,7 @@ const OTP = () => {
         </View>
         {/* footer */}
         <View style={styles.footer}>
-          <RedButton isAnable={false} label="Xác nhận" />
+          <RedButton label="Xác nhận" onPress={onMoveToHomeScreen}/>
           <View style={styles.footer_smallContainer}>
             <Text style={styles.footer_cap}>Bạn chưa nhận được mã?</Text>
             <Pressable>

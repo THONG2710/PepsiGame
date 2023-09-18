@@ -3,4 +3,5 @@ export type AuthenticationStoryBoardParamlist = {
     SignUp: undefined,
     OTP: undefined,
     ProgramRules: undefined,
+    AuthorizedNavigation: undefined,
 }

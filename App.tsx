@@ -23,6 +23,15 @@ import HomeBackground from './src/presentation/component/Background/HomeBackgrou
 import PlayButton from './src/presentation/component/Button/PlayButton';
 import GameBackground from './src/presentation/component/Background/GameBackground';
 import GameScreen from './src/presentation/container/authorized/Game/GameScreen';
+import HappyScreen from './src/presentation/container/authorized/Happy/HappyScreen';
+import HappyBackground from './src/presentation/component/Background/HappyBackground';
+import WhiteButtonPopup from './src/presentation/component/Button/WhiteButtonPopup';
+import RedButtonPopup from './src/presentation/component/Button/RedButtonPopup';
+import PopupLogout from './src/presentation/component/Popup/PopupLogout';
+import PlayButtonPopup from './src/presentation/component/Button/PlayButtonPopup';
+import PopupOptionsPlay from './src/presentation/component/Popup/PopupOptionsPlay';
+import AuthorizedNavigation from './src/presentation/navigation/AuthorizedNavigation';
+import RootNavigation from './src/presentation/navigation/RootNavigation';
 
 function App(): JSX.Element {
   return (
@@ -39,7 +48,16 @@ function App(): JSX.Element {
       // <HomeBackground/>
       // <PlayButton/>
       // <GameBackground/>
-      <GameScreen/>
+      // <GameScreen/>
+      // <HappyScreen/>
+      // <HappyBackground/>
+      // <WhiteButtonPopup/>
+      // <RedButtonPopup label='Đăng xuất'/>
+      // <PopupLogout/>
+      // <PlayButtonPopup/>
+      // <PopupOptionsPlay/>
+      // <AuthorizedNavigation/>
+      <RootNavigation/>
   );
 }
 

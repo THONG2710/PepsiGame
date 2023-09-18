@@ -12,4 +12,7 @@ export const Colors = {
     BEIGE_YELLOW: '#FFDD00',
     LIGHT_RED: '#DB262C',
     DARK_RED: '#C31920',
+    DARK_BLUE: '#0063A7',
+    LIGHT_RED_POPUP: '#D7242A',
+    YELLOW: '#F8E162',
 }

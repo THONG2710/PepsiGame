@@ -12,8 +12,15 @@ import {
   getImageUrl,
 } from '../../../resource';
 import Draggable from 'react-native-draggable';
+import { GameScreenProp } from './type';
 
-const GameScreen = () => {
+const GameScreen: React.FC<GameScreenProp> = (props) => {
+  const {navigation} = props;
+
+  const onMoveToHappyScreen = () => {
+    navigation.navigate('HappyScreen');
+  }
+
   return (
     <GameBackground>
       <View style={styles.container}>
@@ -48,7 +55,7 @@ const GameScreen = () => {
             minY={Dimensions.get('screen').height-420}
             children={<Image style={{width: Dimensions.get('screen').width/2, height:  Dimensions.get('screen').width/2, resizeMode: 'contain'}} source={{uri: getImageUrl(HEAD_IMG)}}/>}
             shouldReverse
-            onDragRelease={() => Alert.alert('ok')}
+            onDragRelease={onMoveToHappyScreen}
           />
         </View>
       </View>

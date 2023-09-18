@@ -1,5 +1,5 @@
 import { StackNavigationProp } from "@react-navigation/stack";
-import { AuthenticationStoryBoardParamlist } from "../../../storyboard/AuthenticationStack";
+import { AuthenticationStoryBoardParamlist } from "../../../storyboard/AuthenticationStackStoryBoard";
 import { RouteProp } from "@react-navigation/native";
 
 export type SignUpNavigationProp = StackNavigationProp<AuthenticationStoryBoardParamlist, 'SignUp'>;

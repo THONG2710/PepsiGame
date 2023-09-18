@@ -18,11 +18,14 @@ import {
   getImageUrl,
 } from '../../resource';
 
-interface PlayButtonProp {}
+interface PlayButtonProp {
+  onPress?: () => void;
+}
 
-const PlayButton: React.FC<PlayButtonProp> = () => {
+const PlayButton: React.FC<PlayButtonProp> = (props) => {
+  const { onPress } = props;
   return (
-    <Pressable style={styles.container}>
+    <Pressable style={styles.container} onPress={onPress}> 
       <ImageBackground
         style={styles.imgBackground}
         source={{uri: getImageUrl(GOLDEN_IMG)}}>

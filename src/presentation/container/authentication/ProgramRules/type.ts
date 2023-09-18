@@ -1,5 +1,5 @@
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { AuthenticationStoryBoardParamlist } from "../../../storyboard/AuthenticationStack";
+import { AuthenticationStoryBoardParamlist } from "../../../storyboard/AuthenticationStackStoryBoard";
 import { RouteProp } from "@react-navigation/native";
 
 export type ProgramRulesNavigationProp = NativeStackNavigationProp<AuthenticationStoryBoardParamlist, 'ProgramRules'>;

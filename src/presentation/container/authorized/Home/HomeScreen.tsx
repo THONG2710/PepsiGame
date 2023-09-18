@@ -11,11 +11,23 @@ import HomeBackground from '../../../component/Background/HomeBackground';
 import {Colors, Fonts, HEAD_IMG, ICON_LOGOUT_IMG, getImageUrl} from '../../../resource';
 import WhiteButton from '../../../component/Button/WhiteButton';
 import PlayButton from '../../../component/Button/PlayButton';
+import ReactNativeModal from 'react-native-modal';
+import PopupOptionsPlay from '../../../component/Popup/PopupOptionsPlay';
+import { HomeScreenProp } from './type';
 
-const HomeScreen = () => {
+const HomeScreen: React.FC<HomeScreenProp> = (props) => {
+  const {navigation} = props;
+
+  const onMoveToGameScreen = () => {
+    navigation.navigate('GameScreen');
+  }
+
   return (
     <HomeBackground>
       <View style={styles.container}>
+        {/* <ReactNativeModal isVisible={true}>
+          <PopupOptionsPlay/>
+        </ReactNativeModal> */}
         <Pressable style={styles.btnLogout}>
           <Image
             style={styles.imgBtnLogout}
@@ -34,7 +46,7 @@ const HomeScreen = () => {
           <Text style={styles.txtCaption}>Hướng dẫn</Text>
         </View>
         <View style={styles.body}>
-          <PlayButton />
+          <PlayButton onPress={onMoveToGameScreen}/>
           <WhiteButton label="Quét mã" buttonStyle={styles.body_button} />
           <WhiteButton label="Bộ sưu tập" buttonStyle={styles.body_button} />
           <WhiteButton

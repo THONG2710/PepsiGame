@@ -44,13 +44,20 @@ import { useState } from 'react';
   export const FIREWORK_IMG = 'fireWork.png';
   export const BOTTOM_IMG = 'bottom.png';
   export const ARROW_UP_IMG = 'arrow_up.png';
+  export const BANG_IMG = 'bang.png';
+  export const PEPSIAN_IMG = 'PepsiAn.png';
+  export const POPUP_BOTTOM_LEFT_IMG = 'popupBottomLeft.png';
+  export const POPUP_BOTTOM_RIGHT_IMG = 'popupBottomRight.png';
+  export const AQUATER_IMG = 'aquarter.png';
+  export const BALLLEFT_IMG = 'ballLeft.png';
 
   export const getImageUrl = (path: string) => {
     try {
       const [url, setUrl] = useState<string>('https://www.google.com.vn/url?sa=i&url=https%3A%2F%2Fvi.pngtree.com%2Ffreepng%2Fgolden-creative-ray-element_4677062.html&psig=AOvVaw39k-SLbomQVlq2JFSwcOIy&ust=1694232905455000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCJCH3MWTmoEDFQAAAAAdAAAAABAP');
       const getUrl = async () => {
-        const result = await storage().ref(path).getDownloadURL();
-        if (result) setUrl(result);
+        const ref = storage().ref(path);
+        const url = await ref.getDownloadURL();
+        if (url) setUrl(url);
       };
       getUrl();
       return url;
