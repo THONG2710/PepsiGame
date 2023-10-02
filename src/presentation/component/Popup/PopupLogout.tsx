@@ -7,12 +7,25 @@ import {
   View,
 } from 'react-native';
 import React from 'react';
-import {AQUATER_IMG, BALLLEFT_IMG, Colors, DECORATIVE_MESH_LEFT_IMG, Fonts, GOLDEN_IMG, getImageUrl} from '../../resource';
+import {
+  AQUATER_IMG,
+  BALLLEFT_IMG,
+  Colors,
+  DECORATIVE_MESH_LEFT_IMG,
+  Fonts,
+  GOLDEN_IMG,
+  getImageUrl,
+} from '../../resource';
 import LinearGradient from 'react-native-linear-gradient';
 import RedButtonPopup from '../Button/RedButtonPopup';
 import WhiteButtonPopup from '../Button/WhiteButtonPopup';
 
-const PopupLogout = () => {
+interface PopupLogoutProp {
+  onPress?: () => void;
+}
+
+const PopupLogout: React.FC<PopupLogoutProp> = props => {
+  const {onPress} = props;
   return (
     <View style={styles.container}>
       <LinearGradient
@@ -21,20 +34,31 @@ const PopupLogout = () => {
         <ImageBackground
           tintColor={'rgba(255,255,255,0.2)'}
           style={{
-            width: Dimensions.get('screen').width / 2,
+            width: Dimensions.get('screen').width / 2 + 20,
             height: Dimensions.get('screen').height / 5,
+            alignItems: 'center',
           }}
           source={{uri: getImageUrl(GOLDEN_IMG)}}>
-            <Image style={styles.imgDecord} source={{uri: getImageUrl(DECORATIVE_MESH_LEFT_IMG)}}/>
-            <Image tintColor={Colors.LIGHT_YELLOW} style={styles.imgDecordLeft} source={{uri: getImageUrl(AQUATER_IMG)}}/>
-            <Image style={[styles.imgDecordTopRight, ]} source={{uri: getImageUrl(BALLLEFT_IMG)}}/>
+          <Image
+            style={styles.imgDecord}
+            source={{uri: getImageUrl(DECORATIVE_MESH_LEFT_IMG)}}
+          />
+          <Image
+            tintColor={Colors.LIGHT_YELLOW}
+            style={styles.imgDecordLeft}
+            source={{uri: getImageUrl(AQUATER_IMG)}}
+          />
+          <Image
+            style={[styles.imgDecordTopRight]}
+            source={{uri: getImageUrl(BALLLEFT_IMG)}}
+          />
           <Text style={styles.txtTitle}>
             Bạn có chắc chắn muốn{' '}
             <Text style={styles.txtTitleHighlight}>đăng xuất</Text> không?
           </Text>
           <View style={styles.buttonContainer}>
             <RedButtonPopup label="Đăng xuất" />
-            <WhiteButtonPopup label="Hủy" />
+            <WhiteButtonPopup label="Hủy" onPress={onPress}/>
           </View>
         </ImageBackground>
       </LinearGradient>
@@ -46,19 +70,21 @@ export default PopupLogout;
 
 const styles = StyleSheet.create({
   container: {
-    width: Dimensions.get('screen').width,
-    height: Dimensions.get('screen').height,
+    width: '100%',
+    height: Dimensions.get('screen').height + 10,
     alignItems: 'center',
     justifyContent: 'center',
   },
 
   smallContainer: {
-    width: Dimensions.get('screen').width / 2,
+    width: Dimensions.get('screen').width / 2 + 20,
     height: Dimensions.get('screen').height / 5,
     marginBottom: 100,
     borderRadius: 10,
     overflow: 'hidden',
     zIndex: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 
   txtTitle: {
@@ -105,5 +131,5 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: -40,
     top: 0,
-  }
+  },
 });

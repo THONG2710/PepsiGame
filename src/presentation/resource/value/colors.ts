@@ -13,6 +13,12 @@ export const Colors = {
     LIGHT_RED: '#DB262C',
     DARK_RED: '#C31920',
     DARK_BLUE: '#0063A7',
+    DARK_BLUE2: '#005082',
     LIGHT_RED_POPUP: '#D7242A',
     YELLOW: '#F8E162',
+    BROWN_SOIL: '#EFB825',
+    GREEN: '#00A61B',
+    YELLOW2: '#EFB929',
+    YELLOW3: '#F9D36C',
+    DARK_RED2: '#D02027',
 }

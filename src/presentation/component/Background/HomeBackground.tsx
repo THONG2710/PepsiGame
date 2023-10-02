@@ -40,7 +40,7 @@ const HomeBackground: React.FC<HomeBackgroundProp> = props => {
       <ImageBackground
         style={styles.imgBackground}
         source={{uri: getImageUrl(LIGHT_LEAK_IMG)}}>
-        <StatusBar backgroundColor={Colors.TRANSPARENT} translucent={true} />
+        <StatusBar translucent={true} />
         <Image
           style={styles.imgCurtainLeft}
           source={{uri: getImageUrl(CURTAIN_LEFT_BIG_IMG)}}

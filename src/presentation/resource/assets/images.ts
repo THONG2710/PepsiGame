@@ -50,14 +50,40 @@ import { useState } from 'react';
   export const POPUP_BOTTOM_RIGHT_IMG = 'popupBottomRight.png';
   export const AQUATER_IMG = 'aquarter.png';
   export const BALLLEFT_IMG = 'ballLeft.png';
+  export const DECORDBOTTOM_RIGHT = 'decordBottom_right.png';
+  export const BILL_IMG = 'bill.png';
+  export const PEPSI_AN_IMG = 'Pepsi_an.png';
+  export const PEPSI_LOC_IMG = 'Pepsi_loc.png';
+  export const PEPSI_PHUC_IMG = 'Pepsi_phuc.png';
+  export const RED_CIRCLE_IMG = 'red_cricle.png';
+  export const CIRCLE_DECORD_IMG= 'circle_decord.png';
+  export const DBTNPRE_IMG = 'dBtnpre.png';
+  export const BTNPRE_IMG = 'btnPre.png';
+  export const BTNADD_IMG = 'btnAdd.png';
+  export const DBTNADD_IMG = 'dBtnAdd.png';
+  export const STEP1_IMG = 'step1.png';
+  export const STEP2_IMG = 'step2.jpg';
+  export const STEP3_IMG = 'step3.jpg';
+  export const HAT_IMG = 'hat.png';
+  export const CUP_IMG = 'cup.png';
+  export const SHIRT_IMG = 'shirt.png';
+  export const MARKER_IMG = 'marker.png';
+  export const BAG_IMG = 'bag.png';
+  export const BOX_IMG = 'box.png';
+  export const BOTTOM_DECORD_IMG = 'BottomDecord.png';
+  export const BUTTON_CLOSE_IMG = 'Button_close.png';
+  export const LEFT_DECORD_IMG = 'leftDecord.png';
+  export const RIGHT_TOP_IMG = 'rightTop.png';
+  export const DECORD_IMG = 'decord.png';
+
 
   export const getImageUrl = (path: string) => {
     try {
       const [url, setUrl] = useState<string>('https://www.google.com.vn/url?sa=i&url=https%3A%2F%2Fvi.pngtree.com%2Ffreepng%2Fgolden-creative-ray-element_4677062.html&psig=AOvVaw39k-SLbomQVlq2JFSwcOIy&ust=1694232905455000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCJCH3MWTmoEDFQAAAAAdAAAAABAP');
       const getUrl = async () => {
         const ref = storage().ref(path);
-        const url = await ref.getDownloadURL();
-        if (url) setUrl(url);
+        const urlAPi = await ref.getDownloadURL();
+        if (urlAPi) setUrl(urlAPi);
       };
       getUrl();
       return url;

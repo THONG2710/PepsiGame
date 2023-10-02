@@ -32,6 +32,18 @@ import PlayButtonPopup from './src/presentation/component/Button/PlayButtonPopup
 import PopupOptionsPlay from './src/presentation/component/Popup/PopupOptionsPlay';
 import AuthorizedNavigation from './src/presentation/navigation/AuthorizedNavigation';
 import RootNavigation from './src/presentation/navigation/RootNavigation';
+import ScanBillScreen from './src/presentation/container/authorized/ScanBill/ScanBillScreen';
+import SecondaryScreenBackground from './src/presentation/component/Background/ScanBillBackground';
+import CollectionBackground from './src/presentation/component/Background/CollectionBackground';
+import HeaderComponent from './src/presentation/component/Header/HeaderComponent';
+import CollectionScreen from './src/presentation/container/authorized/Collection/CollectionScreen';
+import InstructionScreen from './src/presentation/container/authorized/Instruction/InstructionScreen';
+import InstructionBackground from './src/presentation/component/Background/InstructionBackground';
+import PresentScreen from './src/presentation/container/authorized/Present/PresentScreen';
+import ItemExchangeGift from './src/presentation/component/Item/ItemExchangeGift';
+import ItemMyGift from './src/presentation/component/Item/ItemMyGift';
+import EmtyGift from './src/presentation/container/authorized/Present/EmtyGift';
+import PopupRecivedGift from './src/presentation/component/Popup/PopupRecivedGift';
 
 function App(): JSX.Element {
   return (
@@ -57,7 +69,19 @@ function App(): JSX.Element {
       // <PlayButtonPopup/>
       // <PopupOptionsPlay/>
       // <AuthorizedNavigation/>
-      <RootNavigation/>
+      // <RootNavigation/>
+      // <ScanBillScreen/>
+      // <SecondaryScreenBackground/>
+      // <CollectionBackground/>
+      // <HeaderComponent/>
+      // <CollectionScreen/>
+      // <InstructionScreen/>
+      // <InstructionBackground/>
+      <PresentScreen/>
+      // <ItemExchangeGift/>
+      // <ItemMyGift/>
+      // <EmtyGift/>
+      // <PopupRecivedGift/>
   );
 }
 

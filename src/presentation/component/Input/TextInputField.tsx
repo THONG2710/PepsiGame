@@ -1,16 +1,17 @@
-import {StyleSheet, Text, TextInput, View, Dimensions, TextInputProps} from 'react-native';
+import {StyleSheet, Text, TextInput, View, Dimensions, TextInputProps, StyleProp, ViewStyle} from 'react-native';
 import React from 'react';
 import {Colors} from '../../resource/value/colors';
 
 interface TextInputFieldProps {
   placeholder?: string;
   inputProp?: TextInputProps;
+  inputStyle?: StyleProp<ViewStyle>
 }
 
 const TextInputField: React.FC<TextInputFieldProps> = props => {
-  const {placeholder, inputProp} = props;
+  const {placeholder, inputProp, inputStyle} = props;
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, inputStyle]}>
       <TextInput {...inputProp} style={styles.inputText} placeholder={placeholder} />
     </View>
   );

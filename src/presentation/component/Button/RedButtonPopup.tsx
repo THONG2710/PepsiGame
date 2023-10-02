@@ -2,10 +2,12 @@ import {
   Dimensions,
   Image,
   ImageBackground,
+  StyleProp,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
+  ViewStyle,
 } from 'react-native';
 import React from 'react';
 import {Colors, Fonts, GOLDEN_IMG, RED_NET_IMG, getImageUrl} from '../../resource';
@@ -13,12 +15,13 @@ import LinearGradient from 'react-native-linear-gradient';
 
 interface RedButtonPopupProp {
   label?: string;
+  btnPopupStyle?: StyleProp<ViewStyle>
 }
 
 const RedButtonPopup: React.FC<RedButtonPopupProp> = prop => {
-  const {label} = prop;
+  const {label, btnPopupStyle} = prop;
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={[styles.container, btnPopupStyle]}>
       <ImageBackground
         style={styles.imgBackground}
         source={{uri: getImageUrl(GOLDEN_IMG)}}>

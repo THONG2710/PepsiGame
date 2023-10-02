@@ -22,12 +22,13 @@ import LinearGradient from 'react-native-linear-gradient';
 
 interface WhiteButtonPopupProp {
   label?: string;
+  onPress?: () => void;
 }
 
 const WhiteButtonPopup: React.FC<WhiteButtonPopupProp> = prop => {
-  const {label} = prop;
+  const {label, onPress} = prop;
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <ImageBackground
         style={styles.imgBackground}
         source={{uri: getImageUrl(GOLDEN_IMG)}}>

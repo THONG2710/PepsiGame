@@ -4,31 +4,44 @@ import {
   Pressable,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import HomeBackground from '../../../component/Background/HomeBackground';
 import {Colors, Fonts, HEAD_IMG, ICON_LOGOUT_IMG, getImageUrl} from '../../../resource';
 import WhiteButton from '../../../component/Button/WhiteButton';
 import PlayButton from '../../../component/Button/PlayButton';
 import ReactNativeModal from 'react-native-modal';
-import PopupOptionsPlay from '../../../component/Popup/PopupOptionsPlay';
 import { HomeScreenProp } from './type';
-
+import storage from '@react-native-firebase/storage'
+import PopupLogout from '../../../component/Popup/PopupLogout';
+  
 const HomeScreen: React.FC<HomeScreenProp> = (props) => {
   const {navigation} = props;
+  const [isVisibleModal, setIsVisibleModal] = useState(false);
 
   const onMoveToGameScreen = () => {
     navigation.navigate('GameScreen');
   }
 
+  const onToggleModal = () => {
+    setIsVisibleModal(!isVisibleModal);
+  }
+
+  useEffect(() => {
+    console.log(isVisibleModal);
+    
+  }, [isVisibleModal])
+  
+
   return (
     <HomeBackground>
       <View style={styles.container}>
-        {/* <ReactNativeModal isVisible={true}>
-          <PopupOptionsPlay/>
-        </ReactNativeModal> */}
-        <Pressable style={styles.btnLogout}>
+        <ReactNativeModal isVisible={isVisibleModal}>
+          <PopupLogout onPress={onToggleModal}/>
+        </ReactNativeModal>
+        <Pressable style={styles.btnLogout} onPress={onToggleModal}>
           <Image
             style={styles.imgBtnLogout}
             source={{uri: getImageUrl(ICON_LOGOUT_IMG)}}
