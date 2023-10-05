@@ -13,14 +13,38 @@ import {Colors, Fonts} from '../../../resource';
 import MyGiftsScreen from './MyGiftsScreen';
 import ExchangeGiftsScreen from './ExchangeGiftsScreen';
 import EmtyGift from './EmtyGift';
+import {PresentScreenProp} from './type';
+import {useAppDispatch} from '../../../shared-state';
+import {isLogged} from '../../../shared-state/redux/Actions/UserActions';
+import ReactNativeModal from 'react-native-modal';
+import PopupLogout from '../../../component/Popup/PopupLogout';
 
-const PresentScreen = () => {
+const PresentScreen: React.FC<PresentScreenProp> = props => {
   const [isMyGift, setIsMyGift] = useState(false);
+  const {navigation} = props;
+  const dispatch = useAppDispatch();
+  const [isVisibleModal, setIsVisibleModal] = useState(false);
+
+  const onToggleModal = () => {
+    setIsVisibleModal(!isVisibleModal);
+  };
+
+  const onHandleLogout = () => {
+    dispatch(isLogged(false));
+    navigation.navigate('Authentication');
+  };
 
   return (
     <View style={styles.container}>
       <InstructionBackground>
-        <HeaderComponent label="Chi tiết quà tặng" />
+        <ReactNativeModal isVisible={isVisibleModal}>
+          <PopupLogout onPress={onToggleModal} onLogout={onHandleLogout} />
+        </ReactNativeModal>
+        <HeaderComponent
+          label="Chi tiết quà tặng"
+          onPressBack={() => navigation.goBack()}
+          onPressLogout={onToggleModal}
+        />
         {/* Tab */}
         <View style={styles.tabContainer}>
           <Pressable
@@ -44,7 +68,7 @@ const PresentScreen = () => {
         </View>
         {/* body */}
         <View style={styles.body}>
-          {isMyGift ? <EmtyGift /> : <ExchangeGiftsScreen />}
+          {isMyGift ? <MyGiftsScreen /> : <ExchangeGiftsScreen />}
         </View>
       </InstructionBackground>
     </View>

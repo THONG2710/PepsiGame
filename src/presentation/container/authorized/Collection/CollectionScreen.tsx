@@ -1,5 +1,5 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import CollectionBackground from '../../../component/Background/CollectionBackground';
 import HeaderComponent from '../../../component/Header/HeaderComponent';
 import {
@@ -15,13 +15,48 @@ import {
 } from '../../../resource';
 import InputSpinner from 'react-native-input-spinner';
 import RedButton from '../../../component/Button/RedButton';
+import {CollectionScreenProp} from './type';
+import {useAppDispatch} from '../../../shared-state';
+import {isLogged} from '../../../shared-state/redux/Actions/UserActions';
+import ReactNativeModal from 'react-native-modal';
+import PopupLogout from '../../../component/Popup/PopupLogout';
+import PopupGiftClose from '../../../component/Popup/PopupGiftClose';
 
-const CollectionScreen = () => {
+const CollectionScreen: React.FC<CollectionScreenProp> = props => {
+  const {navigation} = props;
+  const dispatch = useAppDispatch();
+  const [isVisibleModal, setIsVisibleModal] = useState(false);
+  const [isShowGiftClose, setisShowGiftClose] = useState(false);
+
+  const onToggleModal = () => {
+    setIsVisibleModal(!isVisibleModal);
+  };
+
+  const onHandleLogout = () => {
+    dispatch(isLogged(false));
+    navigation.navigate('Authentication');
+  };
+
+  const onToggleGiftClose = () => {
+    setisShowGiftClose(!isShowGiftClose);
+  }
+
+  
   return (
     <View style={styles.container}>
       <CollectionBackground>
+        <ReactNativeModal isVisible={isVisibleModal}>
+          <PopupLogout onPress={onToggleModal} onLogout={onHandleLogout} />
+        </ReactNativeModal>
+        <ReactNativeModal isVisible={isShowGiftClose}>
+          <PopupGiftClose onCancle={onToggleGiftClose} isOpen={false}/>
+        </ReactNativeModal>
         {/* header */}
-        <HeaderComponent label="Bộ sưu tập" />
+        <HeaderComponent
+          label="Bộ sưu tập"
+          onPressBack={() => navigation.goBack()}
+          onPressLogout={onToggleModal}
+        />
         {/* current point */}
         <View style={styles.CurrentPointContainer}>
           <View style={styles.pointContainer}>
@@ -76,7 +111,12 @@ const CollectionScreen = () => {
             editable={false}
             style={styles.body_styleInput}
             buttonStyle={{width: 30, height: 30}}
-            buttonTextStyle={{ height: 40, width: 35, position: 'absolute', top: -15, }}  
+            buttonTextStyle={{
+              height: 40,
+              width: 35,
+              position: 'absolute',
+              top: -15,
+            }}
             textColor={Colors.WHITE}
             fontSize={14}
             fontFamily={Fonts.primaryFonts}
@@ -84,7 +124,7 @@ const CollectionScreen = () => {
         </View>
         {/* footer */}
         <View style={styles.footer}>
-          <RedButton label='Đổi ngay'/>
+          <RedButton label="Đổi ngay" onPress={onToggleGiftClose}/>
         </View>
       </CollectionBackground>
     </View>
@@ -203,5 +243,5 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     marginTop: 20,
-  }
+  },
 });

@@ -21,12 +21,16 @@ const GameScreen: React.FC<GameScreenProp> = (props) => {
     navigation.navigate('HappyScreen');
   }
 
+  const onGoBack = () => {
+    navigation.goBack();
+  }
+
   return (
     <GameBackground>
       <View style={styles.container}>
         {/* header */}
         <View style={styles.header}>
-          <Pressable>
+          <Pressable onPress={onGoBack}>
             <Image
               style={styles.header_iconBack}
               source={{uri: getImageUrl(ICON_BACK)}}

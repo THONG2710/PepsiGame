@@ -7,39 +7,64 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import HomeBackground from '../../../component/Background/HomeBackground';
-import {Colors, Fonts, HEAD_IMG, ICON_LOGOUT_IMG, getImageUrl} from '../../../resource';
+import {
+  Colors,
+  Fonts,
+  HEAD_IMG,
+  ICON_LOGOUT_IMG,
+  getImageUrl,
+} from '../../../resource';
 import WhiteButton from '../../../component/Button/WhiteButton';
 import PlayButton from '../../../component/Button/PlayButton';
 import ReactNativeModal from 'react-native-modal';
-import { HomeScreenProp } from './type';
-import storage from '@react-native-firebase/storage'
+import {HomeScreenProp} from './type';
+import storage from '@react-native-firebase/storage';
 import PopupLogout from '../../../component/Popup/PopupLogout';
-  
-const HomeScreen: React.FC<HomeScreenProp> = (props) => {
+import {useAppDispatch, useAppSelector} from '../../../shared-state';
+import PopupOptionsPlay from '../../../component/Popup/PopupOptionsPlay';
+import { isLogged } from '../../../shared-state/redux/Actions/UserActions';
+
+const HomeScreen: React.FC<HomeScreenProp> = props => {
   const {navigation} = props;
   const [isVisibleModal, setIsVisibleModal] = useState(false);
-
-  const onMoveToGameScreen = () => {
-    navigation.navigate('GameScreen');
-  }
+  const [isVisibleOption, setIsVisibleOption] = useState(false);
+  const dispatch = useAppDispatch();
 
   const onToggleModal = () => {
     setIsVisibleModal(!isVisibleModal);
+  };
+
+  const onToggleOptionPlay = () => {
+    setIsVisibleOption(!isVisibleOption);
+  };
+
+  const onLogout = () => {
+    navigation.navigate('Authentication');
+    dispatch(isLogged(false));
+  }
+
+  const onPlayFree = () => {
+    navigation.navigate('GameScreen');
+  }
+
+  const onPlay = () => {
+    navigation.navigate('GameScreen');
   }
 
   useEffect(() => {
-    console.log(isVisibleModal);
-    
-  }, [isVisibleModal])
-  
+    // console.log(isVisibleModal);
+  }, [isVisibleModal]);
 
   return (
     <HomeBackground>
       <View style={styles.container}>
         <ReactNativeModal isVisible={isVisibleModal}>
-          <PopupLogout onPress={onToggleModal}/>
+          <PopupLogout onPress={onToggleModal} onLogout={onLogout}/>
+        </ReactNativeModal>
+        <ReactNativeModal isVisible={isVisibleOption}>
+          <PopupOptionsPlay onCancle={onToggleOptionPlay} onPlayFree={onPlayFree} onPlay={onPlay}/>
         </ReactNativeModal>
         <Pressable style={styles.btnLogout} onPress={onToggleModal}>
           <Image
@@ -56,15 +81,26 @@ const HomeScreen: React.FC<HomeScreenProp> = (props) => {
         </View>
         {/* body */}
         <View>
-          <Text style={styles.txtCaption}>Hướng dẫn</Text>
+          <Pressable onPress={() => navigation.navigate('InstructionScreen')}>
+            <Text style={styles.txtCaption}>Hướng dẫn</Text>
+          </Pressable>
         </View>
         <View style={styles.body}>
-          <PlayButton onPress={onMoveToGameScreen}/>
-          <WhiteButton label="Quét mã" buttonStyle={styles.body_button} />
-          <WhiteButton label="Bộ sưu tập" buttonStyle={styles.body_button} />
+          <PlayButton onPress={onToggleOptionPlay} />
+          <WhiteButton
+            label="Quét mã"
+            buttonStyle={styles.body_button}
+            onPress={() => navigation.navigate('ScanBillScreen')}
+          />
+          <WhiteButton
+            label="Bộ sưu tập"
+            buttonStyle={styles.body_button}
+            onPress={() => navigation.navigate('CollectionScreen')}
+          />
           <WhiteButton
             label="Chi tiết quà tặng"
             buttonStyle={styles.body_button}
+            onPress={() => navigation.navigate('PresentScreen')}
           />
         </View>
       </View>

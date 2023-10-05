@@ -21,4 +21,8 @@ export const Colors = {
     YELLOW2: '#EFB929',
     YELLOW3: '#F9D36C',
     DARK_RED2: '#D02027',
+    GRAY2: '#7A848A',
+    LIGHT_YELLOW2: '#FFF2BC',
+    LIGHT_YELLOW3: '#FFE162',
+    LIGHT_GREEN: '#4F9636',
 }

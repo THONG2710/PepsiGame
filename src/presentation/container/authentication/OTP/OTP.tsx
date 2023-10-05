@@ -1,5 +1,5 @@
 import {Dimensions, Pressable, StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import {Colors, Fonts} from '../../../resource';
 import RedButton from '../../../component/Button/RedButton';
 import WhiteButton from '../../../component/Button/WhiteButton';
@@ -8,11 +8,27 @@ import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import TextInputField from '../../../component/Input/TextInputField';
 import OTPTextView from 'react-native-otp-textinput';
 import { OTPProp } from './type';
+import { useAppDispatch } from '../../../shared-state';
+import { isLogged } from '../../../shared-state/redux/Actions/UserActions';
 
 const OTP:React.FC<OTPProp> = (props) => {
   const {navigation} = props;
-  const onMoveToHomeScreen = () => {
-    navigation.navigate('AuthorizedNavigation');
+  const [txtOtp, setTxtOtp] = useState('');
+  const [isCorrect, setisCorrect] = useState(true);
+  const otp = useRef(null);
+  const dispatch = useAppDispatch();
+  const onHandleMoveToHomeScreen = () => {
+    if (txtOtp == '1112') {
+      navigation.navigate('AuthorizedNavigation');
+      setisCorrect(true);
+      dispatch(isLogged(true))
+    } else {
+      setisCorrect(false);
+    }
+  }
+
+  const onResetOTP = () => {
+    otp.current.clear();
   }
 
   return (
@@ -33,16 +49,18 @@ const OTP:React.FC<OTPProp> = (props) => {
             containerStyle={styles.body_containerOTP}
             inputCount={4}
             textInputStyle={styles.body_txtOTP}
-            offTintColor={Colors.WHITE}
-            tintColor={Colors.WHITE}
+            offTintColor={isCorrect?Colors.WHITE:Colors.RED}
+            tintColor={isCorrect?Colors.WHITE:Colors.RED}
+            handleTextChange={(value) => setTxtOtp(value)}
+            ref={otp}
           />
         </View>
         {/* footer */}
         <View style={styles.footer}>
-          <RedButton label="Xác nhận" onPress={onMoveToHomeScreen}/>
+          <RedButton label="Xác nhận" onPress={onHandleMoveToHomeScreen}/>
           <View style={styles.footer_smallContainer}>
             <Text style={styles.footer_cap}>Bạn chưa nhận được mã?</Text>
-            <Pressable>
+            <Pressable onPress={onResetOTP}>
               <Text style={styles.footer_txtButton}> Gửi lại mã</Text>
             </Pressable>
           </View>

@@ -22,10 +22,11 @@ import WhiteButtonPopup from '../Button/WhiteButtonPopup';
 
 interface PopupLogoutProp {
   onPress?: () => void;
+  onLogout?: () => void;
 }
 
 const PopupLogout: React.FC<PopupLogoutProp> = props => {
-  const {onPress} = props;
+  const {onPress, onLogout} = props;
   return (
     <View style={styles.container}>
       <LinearGradient
@@ -57,7 +58,7 @@ const PopupLogout: React.FC<PopupLogoutProp> = props => {
             <Text style={styles.txtTitleHighlight}>đăng xuất</Text> không?
           </Text>
           <View style={styles.buttonContainer}>
-            <RedButtonPopup label="Đăng xuất" />
+            <RedButtonPopup label="Đăng xuất" onPress={onLogout}/>
             <WhiteButtonPopup label="Hủy" onPress={onPress}/>
           </View>
         </ImageBackground>

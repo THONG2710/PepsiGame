@@ -1,11 +1,11 @@
 import {
   Dimensions,
+  Image,
   ImageBackground,
   StyleSheet,
   Text,
-  View,
   TouchableOpacity,
-  Image,
+  View,
 } from 'react-native';
 import React from 'react';
 import {
@@ -16,21 +16,21 @@ import {
   getImageUrl,
 } from '../../resource';
 
-interface PlayButtonPopupProp {
+interface DisableButtonPopupProp {
   label?: string;
-  onPress?: () => void;
 }
 
-const PlayButtonPopup: React.FC<PlayButtonPopupProp> = props => {
-  const {label, onPress} = props;
+const DisableButtonPopup: React.FC<DisableButtonPopupProp> = props => {
+  const {label} = props;
   return (
-    <TouchableOpacity style={styles.container} onPress={onPress}>
+    <TouchableOpacity style={styles.container}>
       <ImageBackground
         style={styles.imgBackground}
+        tintColor={Colors.WHITE}
         source={{uri: getImageUrl(GOLDEN_IMG)}}>
         <View style={styles.smallContainer}>
           <Image
-            tintColor={Colors.LIGHT_RED}
+            tintColor={Colors.GRAY2}
             style={styles.imgRednet}
             source={{uri: getImageUrl(RED_NET_IMG)}}
           />
@@ -38,7 +38,7 @@ const PlayButtonPopup: React.FC<PlayButtonPopupProp> = props => {
           <View>
             <Text style={styles.txtLabel}>{label}</Text>
             <Text style={styles.txtContent}>
-              Bạn còn <Text style={styles.txtHighlight}>3</Text> lượt chơi
+              Bạn còn <Text style={styles.txtHighlight}>0</Text> lượt chơi
             </Text>
           </View>
         </View>
@@ -47,7 +47,7 @@ const PlayButtonPopup: React.FC<PlayButtonPopupProp> = props => {
   );
 };
 
-export default PlayButtonPopup;
+export default DisableButtonPopup;
 
 const styles = StyleSheet.create({
   container: {
@@ -70,14 +70,14 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: Colors.RED,
+    backgroundColor: Colors.MORE_GRAY,
     overflow: 'hidden',
   },
 
   imgRhombus: {
     width: 70,
     height: 70,
-    backgroundColor: Colors.DARK_RED,
+    backgroundColor: Colors.GRAY2,
     position: 'absolute',
     transform: [{rotate: '45deg'}],
   },
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
 
   txtHighlight: {
     fontWeight: 'bold',
-    color: Colors.BEIGE_YELLOW,
+    color: Colors.WHITE,
     fontSize: 12,
   },
 });

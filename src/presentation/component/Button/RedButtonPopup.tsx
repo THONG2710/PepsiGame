@@ -15,13 +15,14 @@ import LinearGradient from 'react-native-linear-gradient';
 
 interface RedButtonPopupProp {
   label?: string;
-  btnPopupStyle?: StyleProp<ViewStyle>
+  btnPopupStyle?: StyleProp<ViewStyle>;
+  onPress?: () => void;
 }
 
 const RedButtonPopup: React.FC<RedButtonPopupProp> = prop => {
-  const {label, btnPopupStyle} = prop;
+  const {label, btnPopupStyle, onPress} = prop;
   return (
-    <TouchableOpacity style={[styles.container, btnPopupStyle]}>
+    <TouchableOpacity style={[styles.container, btnPopupStyle]} onPress={onPress}>
       <ImageBackground
         style={styles.imgBackground}
         source={{uri: getImageUrl(GOLDEN_IMG)}}>

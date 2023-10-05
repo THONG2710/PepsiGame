@@ -20,13 +20,16 @@ import {
 } from '../../resource';
 import TextInputField from '../Input/TextInputField';
 import RedButtonPopup from '../Button/RedButtonPopup';
+import { gift } from '../../shared-state/redux/Reducers/GiftReducer';
 
 interface PopupRecivedGiftProp {
   onPress?: () => void;
+  information?: gift;
+  onConfirm?: () => void;
 }
 
 const PopupRecivedGift: React.FC<PopupRecivedGiftProp> = (props) => {
-  const { onPress } = props;
+  const { onPress, information, onConfirm } = props;
   return (
     <View style={styles.container}>
       <LinearGradient
@@ -53,7 +56,7 @@ const PopupRecivedGift: React.FC<PopupRecivedGiftProp> = (props) => {
           <View style={styles.header_smallContainer}>
             <Text style={styles.header_cap}>
               Quà của bạn:{' '}
-              <Text style={styles.header_highLight}>Pepsi Tote Bag</Text>
+              <Text style={styles.header_highLight}>Pepsi Bucket Hat</Text>
             </Text>
           </View>
         </View>
@@ -91,7 +94,7 @@ const PopupRecivedGift: React.FC<PopupRecivedGiftProp> = (props) => {
         </View>
         {/* footer */}
         <View style={styles.footer}>
-          <RedButtonPopup label="Xác nhận" btnPopupStyle={styles.footer_btn} />
+          <RedButtonPopup label="Xác nhận" btnPopupStyle={styles.footer_btn} onPress={onConfirm}/>
         </View>
       </LinearGradient>
     </View>

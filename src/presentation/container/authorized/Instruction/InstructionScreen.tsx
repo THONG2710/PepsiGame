@@ -6,16 +6,48 @@ import {
   Text,
   View,
 } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import InstructionBackground from '../../../component/Background/InstructionBackground';
 import HeaderComponent from '../../../component/Header/HeaderComponent';
-import {Colors, Fonts, STEP1_IMG, STEP2_IMG, STEP3_IMG, getImageUrl} from '../../../resource';
+import {
+  Colors,
+  Fonts,
+  STEP1_IMG,
+  STEP2_IMG,
+  STEP3_IMG,
+  getImageUrl,
+} from '../../../resource';
+import {InstructionScreenProp} from './type';
+import {useAppDispatch} from '../../../shared-state';
+import {isLogged} from '../../../shared-state/redux/Actions/UserActions';
+import ReactNativeModal from 'react-native-modal';
+import PopupLogout from '../../../component/Popup/PopupLogout';
 
-const InstructionScreen = () => {
+const InstructionScreen: React.FC<InstructionScreenProp> = prop => {
+  const {navigation} = prop;
+  const dispatch = useAppDispatch();
+  const [isVisibleModal, setIsVisibleModal] = useState(false);
+
+  const onToggleModal = () => {
+    setIsVisibleModal(!isVisibleModal);
+  };
+  
+  const onHandleLogout = () => {
+    dispatch(isLogged(false));
+    navigation.navigate('Authentication');
+  };
+
   return (
     <View style={styles.container}>
       <InstructionBackground>
-        <HeaderComponent label="Hướng dẫn" />
+        <ReactNativeModal isVisible={isVisibleModal}>
+          <PopupLogout onPress={onToggleModal} onLogout={onHandleLogout} />
+        </ReactNativeModal>
+        <HeaderComponent
+          label="Hướng dẫn"
+          onPressBack={() => navigation.goBack()}
+          onPressLogout={onToggleModal}
+        />
         <ScrollView>
           <View style={styles.stepContainer}>
             <Image

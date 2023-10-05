@@ -11,12 +11,19 @@ import LinearGradient from 'react-native-linear-gradient';
 import {BUTTON_CLOSE_IMG, Colors, Fonts, getImageUrl} from '../../resource';
 import PlayButtonPopup from '../Button/PlayButtonPopup';
 
-const PopupOptionsPlay = () => {
+export type PopupOptionsPlayProp = {
+  onCancle?: () => void;
+  onPlayFree?: () => void;
+  onPlay?: () => void;
+}
+
+const PopupOptionsPlay: React.FC<PopupOptionsPlayProp> = (props) => {
+  const {onCancle, onPlay, onPlayFree} = props;
   return (
     <LinearGradient
       style={styles.container}
       colors={['#FCD54E', '#FEDA95', '#FBD239']}>
-      <Pressable>
+      <Pressable onPress={onCancle}>
         <Image
           style={styles.imgButtonClose}
           source={{uri: getImageUrl(BUTTON_CLOSE_IMG)}}
@@ -25,8 +32,8 @@ const PopupOptionsPlay = () => {
       <View style={styles.smallContainer}>
         <Text style={styles.txtTitle}>BẠN MUỐN SỬ DỤNG LƯỢT CHƠI NÀO?</Text>
         <View style={styles.playButtonContainer}>
-          <PlayButtonPopup label="Lượt chơi miễn phí" />
-          <PlayButtonPopup label="Lượt chơi quy đổi" />
+          <PlayButtonPopup label="Lượt chơi miễn phí" onPress={onPlayFree}/>
+          <PlayButtonPopup label="Lượt chơi quy đổi" onPress={onPlay}/>
         </View>
       </View>
     </LinearGradient>

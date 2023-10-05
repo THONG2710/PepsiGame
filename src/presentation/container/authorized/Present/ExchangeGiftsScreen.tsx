@@ -22,6 +22,9 @@ import {
 import ItemExchangeGift from '../../../component/Item/ItemExchangeGift';
 import ReactNativeModal from 'react-native-modal';
 import PopupRecivedGift from '../../../component/Popup/PopupRecivedGift';
+import PopupSuccessfully from '../../../component/Popup/PopupSuccessfully';
+import {useAppDispatch, useAppSelector} from '../../../shared-state';
+import {addGift} from '../../../shared-state/redux/Actions/GIftAction';
 
 const ExchangeGiftsScreen = () => {
   const listGift = [
@@ -59,11 +62,46 @@ const ExchangeGiftsScreen = () => {
     },
   ];
 
-  const [isShowPopup, setIsShowPopup] = useState(true);
+  const [isShowPopup, setIsShowPopup] = useState(false);
+  const [isShowSucces, setisShowSucces] = useState(false);
+  const dispatch = useAppDispatch();
+  const listgift = useAppSelector(state => state.GiftReducer.gift);
+
+  const onGetInfor = () => {
+    setIsShowPopup(!isShowPopup);
+  };
+
+  const onConfirm = () => {
+    setIsShowPopup(!isShowPopup);
+    setisShowSucces(!isShowSucces);
+    dispatch(
+      addGift({
+        id: 1,
+        name: 'Pepsi Bucket Hat',
+        score: 80,
+        quantity: 600,
+        image: getImageUrl(HAT_IMG),
+        isRecived: false,
+      }),
+    );
+    console.log(listgift);
+  };
+
+  const onCancle = () => {
+    setIsShowPopup(false);
+    setisShowSucces(false);
+  };
+
   return (
     <View style={styles.container}>
       <ReactNativeModal isVisible={isShowPopup}>
-        <PopupRecivedGift onPress={() => setIsShowPopup(!isShowPopup)} />
+        <PopupRecivedGift
+          onPress={() => setIsShowPopup(!isShowPopup)}
+          onConfirm={onConfirm}
+        />
+      </ReactNativeModal>
+      <ReactNativeModal isVisible={isShowSucces}>
+        <PopupSuccessfully onCancle={onCancle} />
       </ReactNativeModal>
       {/* current point */}
       <View style={styles.CurrentPointContainer}>
@@ -85,10 +123,7 @@ const ExchangeGiftsScreen = () => {
         <FlatList
           data={listGift}
           renderItem={({item}) => (
-            <ItemExchangeGift
-              onPress={() => setIsShowPopup(!isShowPopup)}
-              item={item}
-            />
+            <ItemExchangeGift onPress={onGetInfor} item={item} />
           )}
           numColumns={2}
           keyExtractor={(item: any) => item.id}

@@ -44,44 +44,19 @@ import ItemExchangeGift from './src/presentation/component/Item/ItemExchangeGift
 import ItemMyGift from './src/presentation/component/Item/ItemMyGift';
 import EmtyGift from './src/presentation/container/authorized/Present/EmtyGift';
 import PopupRecivedGift from './src/presentation/component/Popup/PopupRecivedGift';
+import DisableButtonPopup from './src/presentation/component/Button/DisableButtonPopup';
+import PopupWrongQRCode from './src/presentation/component/Popup/PopupWrongQRCode';
+import PopupScanSuccessfully from './src/presentation/component/Popup/PopupScanSuccessfully';
+import PopupSuccessfully from './src/presentation/component/Popup/PopupSuccessfully';
+import PopupGiftClose from './src/presentation/component/Popup/PopupGiftClose';
+import { Provider } from 'react-redux';
+import store from './src/presentation/shared-state/redux/Store';
 
 function App(): JSX.Element {
   return (
-      // <PrimaryBackground/>
-      // <SignUp/>
-      // <RedButton/>
-      // <DisableButton/>
-      // <OTP/>
-      // <SignIn/>
-      // <AuthenticationStack/>
-      // <RulesBackground/>
-      // <ProgramRules/>
-      // <HomeScreen/>
-      // <HomeBackground/>
-      // <PlayButton/>
-      // <GameBackground/>
-      // <GameScreen/>
-      // <HappyScreen/>
-      // <HappyBackground/>
-      // <WhiteButtonPopup/>
-      // <RedButtonPopup label='Đăng xuất'/>
-      // <PopupLogout/>
-      // <PlayButtonPopup/>
-      // <PopupOptionsPlay/>
-      // <AuthorizedNavigation/>
-      // <RootNavigation/>
-      // <ScanBillScreen/>
-      // <SecondaryScreenBackground/>
-      // <CollectionBackground/>
-      // <HeaderComponent/>
-      // <CollectionScreen/>
-      // <InstructionScreen/>
-      // <InstructionBackground/>
-      <PresentScreen/>
-      // <ItemExchangeGift/>
-      // <ItemMyGift/>
-      // <EmtyGift/>
-      // <PopupRecivedGift/>
+    <Provider store={store}>
+      <RootNavigation/>
+    </Provider>
   );
 }
 

@@ -75,6 +75,17 @@ import { useState } from 'react';
   export const LEFT_DECORD_IMG = 'leftDecord.png';
   export const RIGHT_TOP_IMG = 'rightTop.png';
   export const DECORD_IMG = 'decord.png';
+  export const LEFT_IMG = 'left.png';
+  export const RIGHT_IMG = 'right.png';
+  export const TOP_IMG = 'top.png';
+  export const LIGHT_IMG = 'light.png';
+  export const GIFT_IMG = 'gift.png';
+  export const GIFT2_IMG = 'gift2.png';
+  export const BUTTON_CLOSE2_IMG = 'Button_close2.png';
+  export const GIFT_CLOSE_IMG = 'gift_close.png';
+  export const GIFT_OPEN_IMG = 'gift_open.png';
+  export const BOOM_IMG = 'boom.png';  
+  export const COIN_IMG = 'coin.png';
 
 
   export const getImageUrl = (path: string) => {
